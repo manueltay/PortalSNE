@@ -40,7 +40,10 @@
 	}
 	
    .embedded-frame > iframe {
-    	height: -webkit-fill-available;
+    	height: 1000px;
+    	height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    	height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    	height: fill-available;
    }
    
 	.v-slot-title-header {
@@ -60,4 +63,5 @@
 		background-color: black;
 		color: white;
 	}
+	
 }

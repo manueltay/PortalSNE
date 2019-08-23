@@ -25,6 +25,7 @@
          background: $navigation-bar-bg-color;
          z-index: 10000;
          overflow: hidden;
+         height: 100%;
        }
        
        .v-button.display-menu-button {
@@ -115,7 +116,7 @@
                color: lighten($navigation-bar-bg-color, 45%);
              }
            }
-
+          
            // Removes the default focus border
            &:focus::after {
              content: none;
@@ -132,6 +133,37 @@
              background: darken($navigation-bar-bg-color, 7%);
            }
          }
+         
+         .v-menubar-borderless .v-menubar-menuitem {
+		    text-align: left;
+	        font-size: $v-font-size * .9;
+	        text-overflow: ellipsis;
+	        color: lighten($navigation-bar-bg-color, 40%);
+	        
+	          &.active, &:focus {
+             color: lighten($navigation-bar-bg-color, 70%);
+
+             .v-icon {
+               color: lighten($navigation-bar-bg-color, 45%);
+             }
+           }
+          
+           // Removes the default focus border
+           &:focus::after {
+             content: none;
+           }
+
+           &::after {
+             // Without this the mousedown event is caught by the ::after element
+             // but mouseup goes to the underlying span (::after is hidden on focus).
+             // This prevents a 'click' event from firing in Safari
+             pointer-events: none;
+           }
+
+           &.borderless:hover {
+             background: darken($navigation-bar-bg-color, 7%);
+           }
+		}
        }
 
        // Responsive styles
@@ -143,7 +175,7 @@
              font-size: $v-font-size * .75;
            }
 
-           .navigation .v-button {
+           .navigation .v-button .v-menubar-borderless .v-menubar-menuitem {
              font-size: 26px;
              height: 60px;
              padding: 10px 6px;

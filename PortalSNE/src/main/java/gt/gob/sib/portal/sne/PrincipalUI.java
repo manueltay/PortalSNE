@@ -20,6 +20,7 @@ import gt.gob.sib.Seguridad.Sesion;
 import gt.gob.sib.portal.sne.core.model.ServiceLocator;
 import gt.gob.sib.portal.sne.core.model_ws.Usuario;
 import gt.gob.sib.portal.sne.info.PaginaInformacionView;
+import gt.gob.sib.portal.sne.menu.MenuAplicacionesView;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser
@@ -84,6 +85,7 @@ public class PrincipalUI extends UI {
 				}
 			}
 		});
+		
 		this.addDetachListener(new DetachListener() {
 			public void detach(DetachEvent event) {
 				File theDir = new File(pathUploads);
@@ -99,7 +101,8 @@ public class PrincipalUI extends UI {
 
 		try {
 			navegador = new Navigator(this, this);
-			navegador.addView("", new PaginaInformacionView());
+			navegador.addView("menu", new MenuAplicacionesView());
+			navegador.addView("info", new PaginaInformacionView());
 		} catch (Exception e) {
 			e.printStackTrace();
 			Notification.show("Ha ocurrido un error: " + e.getMessage(), Type.ERROR_MESSAGE);

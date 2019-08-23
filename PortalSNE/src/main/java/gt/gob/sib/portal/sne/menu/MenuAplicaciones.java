@@ -22,8 +22,6 @@ public class MenuAplicaciones extends HorizontalLayout {
 	protected CssLayout navBarContainer;
 	protected Button menuButton;
 	protected CssLayout menu;
-	protected Button notificaciones;
-	protected Button registros;
 	protected HorizontalLayout header;
 	protected Button btnMenu;
 	protected CssLayout content;
