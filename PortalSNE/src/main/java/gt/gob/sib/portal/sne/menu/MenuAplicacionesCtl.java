@@ -13,6 +13,7 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
 import gt.gob.sib.portal.sne.core.PortalCustomComponent;
+import gt.gob.sib.portal.sne.core.model_ws.Option;
 import gt.gob.sib.portal.sne.menu.catalog.Opcion;
 import gt.gob.sib.portal.sne.menu.catalog.Proceso;
 
@@ -36,7 +37,6 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 	}
 
 	private void addFunctionality() {
-		cargarProcesos();
 		cargarOpciones();
 		pantalla.btnMenu.addClickListener(event -> {
 			if (selected) {
@@ -48,30 +48,32 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 	}
 
 	private void cargarOpciones() {
-		for (Proceso proceso: Proceso.values()) {
+		try {
 			MenuBar menuOpciones = new MenuBar();
 			menuOpciones.addStyleName("borderless");
-			cargarMenu(menuOpciones, proceso.getOpciones());
+			cargarMenu(menuOpciones, getServiceLocatorWS().listAvailableOptions("MTAY"));
 			pantalla.menu.addComponent(menuOpciones);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void cargarMenu(MenuBar menuOpciones, List<Opcion> opciones) {
+	private void cargarMenu(MenuBar menuOpciones, List<Option> opciones) {
 		menuOpciones.removeItems();
-		HashMap<Integer, MenuItem> items = new HashMap<Integer, MenuItem>();
+		HashMap<Long, MenuItem> items = new HashMap<Long, MenuItem>();
 
 		if (opciones != null) {
-			for (Opcion opcion : opciones) {
+			for (Option opcion : opciones) {
 				MenuItem item = null;
 				if (opcion.getIdPadre() != null) {
-					item = items.get(opcion.getIdPadre()).addItem(opcion.getNombre(), null, mycommand(opcion.getUrl()));
+					item = items.get(opcion.getIdPadre()).addItem(opcion.getNombre(), null, mycommand(opcion.getUrlOpcion()));
 					items.put(opcion.getId(), item);
 				} else {
-					if (opcion.getUrl() == null || opcion.getUrl().isEmpty()) {
+					if (opcion.getUrlOpcion() == null || opcion.getUrlOpcion().isEmpty()) {
 						item = menuOpciones.addItem(opcion.getNombre(), null, null);
 						items.put(opcion.getId(), item);
 					} else {
-						item = menuOpciones.addItem(opcion.getNombre(), null, mycommand(opcion.getUrl()));
+						item = menuOpciones.addItem(opcion.getNombre(), null, mycommand(opcion.getUrlOpcion()));
 						items.put(opcion.getId(), item);
 					}
 				}
@@ -119,27 +121,5 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 
 	public void addUserInfo(Label lblInformacionConexion) {
 		pantalla.header.addComponent(lblInformacionConexion);
-	}
-
-	// TODO create data structures and implement data obtainability
-	private void cargarProcesos() {
-		Proceso.SISTEMA_NOTIFICACIONES.setOpciones(getOpcionesSNE());
-		Proceso.AGENTES.setOpciones(getOpcionesAgentes());
-	}
-
-	private List<Opcion> getOpcionesAgentes() {
-		ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-		opciones.add(new Opcion("Agentes Independientes", 2, null, null));
-		opciones.add(new Opcion("Polizas de Responsabilidad Civil", 3, null, 2));
-		opciones.add(new Opcion("Renovación de Pólizas ", 4, "http://appdesa.sib.gob.gt/SegurosExt/#!agenteList", 3));
-		opciones.add(new Opcion("Historial de Envíos", 5, "http://appdesa.sib.gob.gt/SegurosExt/#!historialList", 3));
-		opciones.add(new Opcion("Ayuda", 6, "http://appdesa.sib.gob.gt/SegurosExt/#!historialList", 3));
-		return opciones;
-	}
-
-	private List<Opcion> getOpcionesSNE() {
-		ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-		opciones.add(new Opcion("Sistema de Notificaciones Electrónicas", 1, "http://appdesa.sib.gob.gt/ComunicacionesElectronicasExt/", null));
-		return opciones;
 	}
 }

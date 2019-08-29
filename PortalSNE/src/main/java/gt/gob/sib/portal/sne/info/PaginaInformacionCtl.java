@@ -27,9 +27,8 @@ public class PaginaInformacionCtl extends PortalCustomComponent {
 
 	private void addFunctionality() {
 		File file = new File("C:/Users/mtay/Pictures/Videos exportados/Video_Pequeño.mp4");
-		System.out.println("File " + file.getAbsolutePath());
 		FileResource fileResource = new FileResource(file);
-		Video vv = new Video("Video",fileResource);
+		Video vv = new Video("",fileResource);
 		pantalla.content.addComponent(vv);
 	}
 
