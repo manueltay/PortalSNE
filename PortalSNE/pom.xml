@@ -165,7 +165,7 @@
 			<artifactId>sso-sib</artifactId>
 			<version>8.0.0</version>
 		</dependency>
-
+ 		
 		<!-- Add-ons SIB -->
 		<dependency>
 			<groupId>org.tepi.filtertable</groupId>
