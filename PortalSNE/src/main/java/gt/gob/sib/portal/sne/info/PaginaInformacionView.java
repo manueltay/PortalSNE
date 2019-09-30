@@ -12,7 +12,7 @@ public class PaginaInformacionView extends MenuTemplateView {
 				getMainLayout().addComponent(pantalla);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			errorMessage(e);
 			e.printStackTrace();
 		}
 	}

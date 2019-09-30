@@ -1628,7 +1628,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .tiles {
-	padding: 6.16667px;
+	padding: 18.5px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -1664,7 +1664,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .tiles .tile {
 	float: left;
-	padding: 6.16667px;
+	padding: 18.5px;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
@@ -1701,6 +1701,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .tiles .quarter {
 	width: 25%;
+}
+
+.mytheme .tiles .three-quarters {
+	width: 75%;
 }
 
 .mytheme .tiles[width-range~="-750px"] .two-thirds, .mytheme .tiles[width-range~="-750px"] .half, .mytheme .tiles[width-range~="-750px"] .third, .mytheme .tiles[width-range~="-750px"] .quarter {
@@ -1860,7 +1864,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container {
-	width: 80px !important;
+	width: 166px !important;
 }
 
 .mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .logo {
@@ -15557,4 +15561,11 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-label-info-conexion-encabezado {
 	background-color: black;
 	color: white;
+}
+
+.mytheme .v-video {
+	max-height: 100% !important;
+	max-width: 100% !important;
+	height: 100% !important;
+	width: 100% !important;
 }

@@ -5,6 +5,7 @@
        // Navigation bar background color
        $navigation-bar-bg-color: $v-focus-color;
 
+
        .custom-menubar {
          .v-menubar-menuitem {
            position: relative;
@@ -169,7 +170,7 @@
        // Responsive styles
        &[width-range~="601px-1000px"] {
          .navigation-bar-container {
-           width: 80px !important;
+           width: 166px !important;
 
            .logo {
              font-size: $v-font-size * .75;
@@ -198,7 +199,7 @@
                margin-top: 3px;
                text-align: center;
              }
-
+             
              .v-icon {
                width: 100%;
                float: left;
@@ -257,7 +258,7 @@
 // Styles imported from Tile_Layout.html
 @mixin vaadin-tiles-template {
      .tiles {
-       padding: $v-unit-size / 6;
+       padding: $v-unit-size / 2;
        overflow-y: auto;
        overflow-x: hidden;
 
@@ -294,7 +295,7 @@
 
        .tile {
          float: left;
-         padding: $v-unit-size / 6;
+         padding: $v-unit-size / 2;
          display: -webkit-flex;
          display: -ms-flexbox;
          display: flex;
@@ -331,6 +332,10 @@
 
        .quarter {
          width: 25%;
+       }
+       
+       .three-quarters {
+       	 width: 75%;
        }
 
        // Responsive tile styles

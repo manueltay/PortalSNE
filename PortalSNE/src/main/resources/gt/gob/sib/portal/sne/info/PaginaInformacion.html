@@ -10,21 +10,14 @@
    <vaadin-css-layout style-name="tile full">
     <vaadin-css-layout style-name="tile-content padding" width-full>
      <vaadin-label style-name="title" width-full height="24px" plain-text _id="tituloPagina">
-       Ayuda 
+       Videos 
      </vaadin-label>
     </vaadin-css-layout>
    </vaadin-css-layout>
    <vaadin-css-layout style-name="row" width-full>
     <vaadin-css-layout style-name="tile quarter">
      <vaadin-css-layout style-name="tile-content padding" width-full>
-      <vaadin-label style-name="title" width-full plain-text _id="tituloVideo">
-        Menu 
-      </vaadin-label>
-      <vaadin-label width-full _id="lblDescripcion">
-        A través del portal se pueden consultar las notificaciones recibidas seleccionando la opción 
-       <b>Portal</b> o bien se pueden consultar las opciones de registros en la opción 
-       <b>registros</b>. 
-      </vaadin-label>
+      <vaadin-accordion _id="listVideo"></vaadin-accordion>
      </vaadin-css-layout>
     </vaadin-css-layout>
     <vaadin-css-layout style-name="tile three-quarters">

@@ -5,7 +5,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import gt.gob.sib.portal.sne.core.MenuTemplateView;
 
 public class MenuAplicacionesView extends MenuTemplateView {
-
+	private static final long serialVersionUID = -8104156645932757356L;
 	private MenuAplicacionesCtl componente = null;
 
 	@Override

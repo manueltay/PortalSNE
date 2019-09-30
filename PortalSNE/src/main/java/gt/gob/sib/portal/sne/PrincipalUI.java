@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -13,14 +14,15 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.UI;
 
+import ch.qos.logback.classic.Logger;
 import gt.gob.sib.Seguridad.Sesion;
 import gt.gob.sib.portal.sne.core.model.ServiceLocator;
 import gt.gob.sib.portal.sne.core.model_ws.Usuario;
 import gt.gob.sib.portal.sne.info.PaginaInformacionView;
-import gt.gob.sib.portal.sne.menu.MenuAplicacionesView;
+import gt.gob.sib.portal.sne.menu.PantallaPrincipalView;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser
@@ -40,29 +42,39 @@ public class PrincipalUI extends UI {
 	private ServiceLocator serviceLocator;
 	private String pathUploads;
 	private Usuario usuario;
+	
+	/**
+	 * Utilizado para el manejo de log, almacena la información en tablas del esquema lib
+	 */
+	private static final Logger LOGGER = (Logger)LoggerFactory.getLogger("PortalSNE"); 
 
 	public PrincipalUI() {
 		if (isAmbienteDesarrollo()) {
-			produccion = false;
+			produccion = true;
 			username = "USR103_1";
 			username = "USR_COLUMNA415";
+			username = "USR_GENERAL406";
 		} else {
 			produccion = true;
 			username = (String) Sesion.getUser();
+			
+			if(username == null) {
+				LOGGER.info("El usuario es nulo");
+			}
 		}
 		serviceLocator = new ServiceLocator(produccion);
 	}
 
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
-		getPage().setTitle("Seguros");
-
+		getPage().setTitle("Portal SNE");
+		
 		if (getServiceLocator() == null)
-			System.out.println("El serviceLocator es NULL");
-
+			LOGGER.info("El serviceLocator es nulo");
+		
 		if (username == null)
-			System.out.println("El username es NULL");
-
+			LOGGER.info("El usuario es nulo");
+		
 		usuario = getServiceLocator().findUsuario(username);
 
 		pathUploads = VaadinServlet.getCurrent().getServletConfig().getServletContext().getRealPath("") + File.separator
@@ -101,8 +113,9 @@ public class PrincipalUI extends UI {
 
 		try {
 			navegador = new Navigator(this, this);
-			navegador.addView("menu", new MenuAplicacionesView());
-			navegador.addView("info", new PaginaInformacionView());
+			navegador.addView("", new PantallaPrincipalView());
+			
+			//navegador.addView("info", new PaginaInformacionView());
 		} catch (Exception e) {
 			e.printStackTrace();
 			Notification.show("Ha ocurrido un error: " + e.getMessage(), Type.ERROR_MESSAGE);
