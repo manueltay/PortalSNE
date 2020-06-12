@@ -34,7 +34,8 @@ public class ServiceLocator implements Serializable {
 		if (produccion)
 			return "http://ews.sib.gob.gt:8080";
 		else
-			return "http://localhost:8080";
+			return "http://ews-desa.sib.gob.gt:8080";
+			//return "http://localhost:8080";
 	}
 
 	public String getServidorReportes() {

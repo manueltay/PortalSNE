@@ -56,12 +56,8 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 					menuOpciones = new MenuBar();
 					menuOpciones.addStyleName("borderless");
 					pantalla.menu.addComponent(menuOpciones);
-					for (Option opcion : proceso.getOpciones())
-						if (opcion.getIdPadre() != null) {
-							item = items.get(opcion.getIdPadre()).addItem(opcion.getNombre(), null,
-									mycommand(opcion.getUrlOpcion()));
-							items.put(opcion.getId(), item);
-						} else {
+					for (Option opcion : proceso.getOpciones()) {
+						if (opcion.getIdPadre() == null) {
 							if (opcion.getUrlOpcion() == null || opcion.getUrlOpcion().isEmpty()) {
 								item = menuOpciones.addItem(opcion.getNombre(), null, null);
 								items.put(opcion.getId(), item);
@@ -70,6 +66,14 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 								items.put(opcion.getId(), item);
 							}
 						}
+					}
+					for (Option opcion : proceso.getOpciones()) {
+						if (opcion.getIdPadre() != null) {
+							item = items.get(opcion.getIdPadre()).addItem(opcion.getNombre(), null,
+									mycommand(opcion.getUrlOpcion()));
+							items.put(opcion.getId(), item);
+						}
+					}
 				}
 			}
 		}
@@ -93,14 +97,15 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 		} else {
 			String protocol = UI.getCurrent().getPage().getLocation().toString().split("//")[0];
 			String url2 = "";
-			if (isAmbienteDesarrollo())
-				url2 = protocol + "//" + UI.getCurrent().getPage().getLocation().getHost() + ":8080" + url;
-			else 
+			int puerto = UI.getCurrent().getPage().getLocation().getPort();
+			if (puerto != -1)
+				url2 = protocol + "//" + UI.getCurrent().getPage().getLocation().getHost() + ":" + puerto + url;
+			else
 				url2 = protocol + "//" + UI.getCurrent().getPage().getLocation().getHost() + url;
 			System.out.println(url2);
 			getPrincipalUIExterno().getNavigator().navigateTo("");
 			pantalla.content.removeAllComponents();
-			navegador = new BrowserFrame("", new ExternalResource(url2));			
+			navegador = new BrowserFrame("", new ExternalResource(url2));
 			navegador.setWidth("100%");
 			navegador.addStyleName("embedded-frame");
 			pantalla.content.addComponent(navegador);
@@ -127,7 +132,7 @@ public class MenuAplicacionesCtl extends PortalCustomComponent {
 	public void addUserInfo(Label lblInformacionConexion) {
 		pantalla.header.addComponent(lblInformacionConexion);
 	}
-	
+
 	public boolean isAmbienteDesarrollo() {
 		return System.getProperty("os.name").toLowerCase().indexOf("win") >= 0;
 	}

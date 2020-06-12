@@ -51,9 +51,16 @@ public class PrincipalUI extends UI {
 	public PrincipalUI() {
 		if (isAmbienteDesarrollo()) {
 			produccion = true;
-			username = "USR103_1";
-			username = "USR_COLUMNA415";
-			username = "USR_GENERAL406";
+			//username = "USR103_1";
+			//username = "USR_COLUMNA415";
+			//username = "USR_GENERAL406";
+			username = "USR_COLUMNA4155";
+			
+			
+			
+			
+			
+			
 		} else {
 			produccion = true;
 			username = (String) Sesion.getUser();
