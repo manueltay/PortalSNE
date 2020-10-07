@@ -1628,7 +1628,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .tiles {
-	padding: 6.16667px;
+	padding: 18.5px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -1664,7 +1664,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .tiles .tile {
 	float: left;
-	padding: 6.16667px;
+	padding: 18.5px;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
@@ -1703,6 +1703,10 @@ div.v-layout.v-horizontal.v-widget {
 	width: 25%;
 }
 
+.mytheme .tiles .three-quarters {
+	width: 75%;
+}
+
 .mytheme .tiles[width-range~="-750px"] .two-thirds, .mytheme .tiles[width-range~="-750px"] .half, .mytheme .tiles[width-range~="-750px"] .third, .mytheme .tiles[width-range~="-750px"] .quarter {
 	width: 100%;
 }
@@ -1726,6 +1730,7 @@ div.v-layout.v-horizontal.v-widget {
 	background: #197de1;
 	z-index: 10000;
 	overflow: hidden;
+	height: 100%;
 }
 
 .mytheme .app-shell .v-button.display-menu-button {
@@ -1831,15 +1836,42 @@ div.v-layout.v-horizontal.v-widget {
 	background: #156bc1;
 }
 
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem {
+	text-align: left;
+	font-size: 14.4px;
+	text-overflow: ellipsis;
+	color: #cde3f9;
+}
+
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem.active, .mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem:focus {
+	color: white;
+}
+
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem.active .v-icon, .mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem:focus .v-icon {
+	color: #e3f0fc;
+}
+
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem:focus::after {
+	content: none;
+}
+
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem::after {
+	pointer-events: none;
+}
+
+.mytheme .app-shell .navigation .v-menubar-borderless .v-menubar-menuitem.borderless:hover {
+	background: #156bc1;
+}
+
 .mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container {
-	width: 80px !important;
+	width: 166px !important;
 }
 
 .mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .logo {
 	font-size: 12px;
 }
 
-.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button {
+.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-menubar-borderless .v-menubar-menuitem {
 	font-size: 26px;
 	height: 60px;
 	padding: 10px 6px;
@@ -1847,15 +1879,15 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: 1;
 }
 
-.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button::before {
+.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-menubar-borderless .v-menubar-menuitem::before {
 	content: none;
 }
 
-.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-button-wrap {
+.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-menubar-borderless .v-menubar-menuitem .v-button-wrap {
 	width: 100%;
 }
 
-.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-button-caption {
+.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-menubar-borderless .v-menubar-menuitem .v-button-caption {
 	font-size: 9.6px;
 	margin: 0;
 	width: 100%;
@@ -1864,7 +1896,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: center;
 }
 
-.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-icon {
+.mytheme .app-shell[width-range~="601px-1000px"] .navigation-bar-container .navigation .v-button .v-menubar-borderless .v-menubar-menuitem .v-icon {
 	width: 100%;
 	float: left;
 	text-align: center;
@@ -15507,7 +15539,10 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .embedded-frame > iframe {
+	height: 1000px;
+	height: -moz-available;
 	height: -webkit-fill-available;
+	height: fill-available;
 }
 
 .mytheme .v-slot-title-header {
@@ -15526,4 +15561,11 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-label-info-conexion-encabezado {
 	background-color: black;
 	color: white;
+}
+
+.mytheme .v-video {
+	max-height: 100% !important;
+	max-width: 100% !important;
+	height: 100% !important;
+	width: 100% !important;
 }

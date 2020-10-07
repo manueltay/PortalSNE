@@ -5,6 +5,7 @@
        // Navigation bar background color
        $navigation-bar-bg-color: $v-focus-color;
 
+
        .custom-menubar {
          .v-menubar-menuitem {
            position: relative;
@@ -25,6 +26,7 @@
          background: $navigation-bar-bg-color;
          z-index: 10000;
          overflow: hidden;
+         height: 100%;
        }
        
        .v-button.display-menu-button {
@@ -115,7 +117,7 @@
                color: lighten($navigation-bar-bg-color, 45%);
              }
            }
-
+          
            // Removes the default focus border
            &:focus::after {
              content: none;
@@ -132,18 +134,49 @@
              background: darken($navigation-bar-bg-color, 7%);
            }
          }
+         
+         .v-menubar-borderless .v-menubar-menuitem {
+		    text-align: left;
+	        font-size: $v-font-size * .9;
+	        text-overflow: ellipsis;
+	        color: lighten($navigation-bar-bg-color, 40%);
+	        
+	          &.active, &:focus {
+             color: lighten($navigation-bar-bg-color, 70%);
+
+             .v-icon {
+               color: lighten($navigation-bar-bg-color, 45%);
+             }
+           }
+          
+           // Removes the default focus border
+           &:focus::after {
+             content: none;
+           }
+
+           &::after {
+             // Without this the mousedown event is caught by the ::after element
+             // but mouseup goes to the underlying span (::after is hidden on focus).
+             // This prevents a 'click' event from firing in Safari
+             pointer-events: none;
+           }
+
+           &.borderless:hover {
+             background: darken($navigation-bar-bg-color, 7%);
+           }
+		}
        }
 
        // Responsive styles
        &[width-range~="601px-1000px"] {
          .navigation-bar-container {
-           width: 80px !important;
+           width: 166px !important;
 
            .logo {
              font-size: $v-font-size * .75;
            }
 
-           .navigation .v-button {
+           .navigation .v-button .v-menubar-borderless .v-menubar-menuitem {
              font-size: 26px;
              height: 60px;
              padding: 10px 6px;
@@ -166,7 +199,7 @@
                margin-top: 3px;
                text-align: center;
              }
-
+             
              .v-icon {
                width: 100%;
                float: left;
@@ -225,7 +258,7 @@
 // Styles imported from Tile_Layout.html
 @mixin vaadin-tiles-template {
      .tiles {
-       padding: $v-unit-size / 6;
+       padding: $v-unit-size / 2;
        overflow-y: auto;
        overflow-x: hidden;
 
@@ -262,7 +295,7 @@
 
        .tile {
          float: left;
-         padding: $v-unit-size / 6;
+         padding: $v-unit-size / 2;
          display: -webkit-flex;
          display: -ms-flexbox;
          display: flex;
@@ -299,6 +332,10 @@
 
        .quarter {
          width: 25%;
+       }
+       
+       .three-quarters {
+       	 width: 75%;
        }
 
        // Responsive tile styles

@@ -43,7 +43,6 @@ public abstract class PortalTemplateView  <T extends BaseServiceLocator> extends
 	}
 
 	public void addHeaderImage() {
-
 		imagenBanner = getHeaderImage();
 		imagenBanner.addStyleName("encabezado");
 		
@@ -59,7 +58,7 @@ public abstract class PortalTemplateView  <T extends BaseServiceLocator> extends
 
 	public Image getHeaderImage() {
 		Image imagen = new Image(null,
-				new ExternalResource("http://aplicaciones.sib.gob.gt:7778/i/bannerInstitucional_5.jpg"));
+				new ExternalResource("http://aplicaciones.sib.gob.gt:7778/i/bannerInstitucional_1_1_1.png"));
 		imagen.setWidth("100%");
 		return imagen;
 	}
@@ -114,6 +113,14 @@ public abstract class PortalTemplateView  <T extends BaseServiceLocator> extends
 
 	public CssLayout getMainLayout() {
 		return content.getContent();
+	}
+	
+	public void loadPage(String url) {
+		content.loadPage(url);
+	}
+	
+	public void restart() {
+		content = new MenuAplicacionesCtl();
 	}
 
 }
